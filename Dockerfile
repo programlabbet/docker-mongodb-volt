@@ -7,16 +7,9 @@
 #
 # Use-as-is!
 #
-# Admin user name is: admin
-# Security/authentication is: disabled
-#
 # (C)Copyright by Programlabbet AB 2015 (http://www.programlabbet.se)
 
-FROM tutum/mongodb
-
-# Disable authentication/security by default as this should be as frictionless
-# as possible to use.
-ENV AUTH=no
+FROM bitnami/mongodb
 
 # Explicitly expose ports for maintenance clarity (redundant really...)
 EXPOSE 27017 28017
