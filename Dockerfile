@@ -7,24 +7,16 @@
 #
 # Use-as-is!
 #
+# Admin user name is: admin
+# Security/authentication is: disabled
+#
 # (C)Copyright by Programlabbet AB 2015 (http://www.programlabbet.se)
 
-FROM frodenas/mongodb:2.6
+FROM tutum/mongodb
 
-# Setup default environment variables (passed along to setup scripts)
-ENV MONGODB_USERNAME=mongo
-ENV MONGODB_PASSWORD=development
-ENV MONGODB_DBNAME=development
+# Disable authentication/security by default as this should be as frictionless
+# as possible to use.
+ENV AUTH=no
 
-# Disable security for our development database
-# (it's a mess to get it setup correctly and we don't really need it)
-#
-# Start the mongodb server with add --journal option to recover from
-# suddenly killed database server - happens a lot when developing...
-ENTRYPOINT ["sh", "-c", "sed -ie 's/--auth/--noauth/' /scripts/run.sh ; /scripts/run.sh --journal"]
-
-# Exposed ports
+# Explicitly expose ports for maintenance clarity (redundant really...)
 EXPOSE 27017 28017
-
-# Database volume
-VOLUME /data
